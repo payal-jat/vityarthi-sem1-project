@@ -1,0 +1,99 @@
+# Multi-Armed Bandit RL Project
+
+![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)
+![License](https://img.shields.io/badge/License-MIT-green.svg)
+![Topic](https://img.shields.io/badge/Topic-Reinforcement%20Learning-orange.svg)
+
+## 📌 Project Overview
+This project delivers a modular, object-oriented comparative analysis of foundational **Multi-Armed Bandit (MAB)** exploration-exploitation strategies in Reinforcement Learning. Using a standard 10-armed Gaussian testbed ($k=10$), the project evaluates and benchmarks four core decision-making agents over 1,000 simulation steps:
+
+1. **Random Agent:** Uniform random action selection baseline.
+2. **$\epsilon$-Greedy Agent:** Balances exploitation ($\arg\max Q(a)$) with fixed exploration ($\epsilon=0.1$).
+3. **Softmax Agent:** Probabilistic action selection using the Boltzmann distribution ($\tau=0.1$).
+4. **Upper Confidence Bound (UCB) Agent:** Deterministic exploration guided by uncertainty upper bounds ($c=0.2$).
+
+---
+
+## 👨‍🎓 Student Details
+* **Student Name:** Saurav Kawale
+* **Registration Number:** 26BAI01159
+* **Platform:** VITyarthi (Build Your Own Project)
+
+---
+
+## 📁 Repository Structure
+```text
+.
+├── bandit_environment.py   # Multi-Armed Bandit environment class (k-armed Gaussian testbed)
+├── agents.py               # Implementation of Random, Epsilon-Greedy, Softmax, and UCB agents
+├── experiments.py          # Driver script to run simulations, collect metrics, and plot results
+├── average_rewards.png     # Output plot: Average Reward vs. Steps
+├── percent_optimal_action.png # Output plot: % Optimal Action vs. Steps
+├── statement.md            # Problem statement, scope, target audience, and high-level features
+└── README.md               # Complete project documentation and setup instructions
+```
+
+---
+
+## 🚀 Key Features
+* **Modular OOP Architecture:** Decoupled environment, agent policies, and experiment runner.
+* **Efficient Value Updates:** Employs constant-time $O(1)$ incremental running mean estimation formulas.
+* **Numeric Stability:** Integrated protection against division-by-zero ($\ln(0)$ offsets) and exponent overflow in Softmax and UCB agents.
+* **Automated Metrics & Plotting:** Dynamic computation and high-resolution rendering of:
+  * **Average Reward Trajectory** across 1,000 steps.
+  * **Percentage Optimal Action Choice** over time.
+
+---
+
+## 🛠️ Prerequisites & Installation
+
+### 1. Requirements
+* Python 3.8 or higher
+* NumPy
+* Matplotlib
+
+### 2. Setup Environment
+Clone the repository and install the dependencies:
+```bash
+# Clone the repository
+git clone https://github.com/your-username/multi-armed-bandit-rl.git
+cd multi-armed-bandit-rl
+
+# Install required Python packages
+pip install numpy matplotlib
+```
+
+---
+
+## 💻 How to Run
+
+Execute the main experiment runner script:
+```bash
+python experiments.py
+```
+
+Running the script will:
+1. Initialize a 10-armed bandit environment ($k=10$).
+2. Run all 4 agents simultaneously across 1,000 time steps.
+3. Record step-by-step average rewards and optimal action selection ratios.
+4. Display and save interactive graphical performance plots.
+
+---
+
+## 📊 Experimental Results
+
+### 1. Average Reward vs. Steps
+![Average Reward](average_rewards.png)
+
+### 2. % Optimal Action vs. Steps
+![% Optimal Action](percent_optimal_action.png)
+
+### Key Observations:
+* **UCB ($c=0.2$) & Softmax ($\tau=0.1$):** Demonstrate superior performance, quickly achieving maximal expected rewards ($\approx +1.8$) and identifying the optimal arm over $98\%$ of the time.
+* **$\epsilon$-Greedy ($\epsilon=0.1$):** Trajectories plateau near $90\%$ optimal action selection due to persistent continuous random exploration ($10\%$).
+* **Random Agent:** Serves as a baseline, maintaining an expected reward around $-0.5$ and an optimal action selection rate near $10\%$ ($1/k$).
+
+---
+
+## 📜 License
+This project is open-source and available under the [MIT License](LICENSE).
